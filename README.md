@@ -6,25 +6,25 @@
 unserialize()を悪用したPHP Object Injectionを試行するためのいくつか便利機能も備えております。
 
 ## 使用手順
-1. Docker runで実行します。
+### Docker runで実行します。
 
-    > $ docker build . -t serial-killer
-    > $ docker run -it -d --rm --name serial-killer -p 80:80 --privileged=true serial-killer
-
-2. ブラウザで以下のURLにアクセスしてください。
-
-    `http://localhost/index.php`
+> $ docker build . -t serial-killer
+> $ docker run -it -d --rm --name serial-killer -p 80:80 --privileged=true serial-killer
 
 
-    他にも練習問題を3問ほど用意しています。是非試してみてください。
+### ブラウザで以下のURLにアクセスしてください。
 
-    各問題には `FLAG{****}` 形式の文字列が隠されています。これらを見つける事が問題のゴールです。
+`http://localhost/index.php`
 
-    `http://localhost/level1.php`
+他にも練習問題を3問ほど用意しています。是非試してみてください。
 
-    `http://localhost/level2.php`
+各問題には `FLAG{****}` 形式の文字列が隠されています。これらを見つける事が問題のゴールです。
 
-    `http://localhost/level3.php`
+`http://localhost/level1.php`
+
+`http://localhost/level2.php`
+
+`http://localhost/level3.php`
 
 
 ## 止めたい場合
