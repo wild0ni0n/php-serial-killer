@@ -8,8 +8,8 @@ unserialize()を悪用したPHP Object Injectionを試行するためのいく�
 # 使用手順
 1. Docker runで実行します。
 
-> $ docker build . -t serial-killer
-> $ docker run -it -d --rm --name serial-killer -p 80:80 --privileged=true serial-killer
+    > $ docker build . -t serial-killer
+    > $ docker run -it -d --rm --name serial-killer -p 80:80 --privileged=true serial-killer
 
 2. ブラウザで以下のURLにアクセスしてください。
 
