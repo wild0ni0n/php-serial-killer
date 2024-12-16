@@ -1,0 +1,14 @@
+FROM php:8.4-apache
+WORKDIR /var/www/html
+
+ARG UID
+ARG GID
+ARG USERNAME
+
+ENV UID ${UID}
+ENV GID ${GID}
+ENV USERNAME ${USERNAME}
+
+# RUN groupadd -g ${GID} ${USERNAME}
+# RUN useradd -u ${UID} -g ${USERNAME} -m ${USERNAME}
+RUN echo "UID=${UID}, GID=${GID}, USERNAME=${USERNAME}"

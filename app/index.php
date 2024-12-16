@@ -55,16 +55,20 @@ if(isset($_GET["uploads"])) {
 	}
 }
 //シリアライズ化
-if($_POST["deserialize_data"] !== "" AND isset($_POST["s_submit"])) {
-	eval($_POST["deserialize_data"]);
-	$result = addslashes(serialize($pwn));
-	$_SESSION["deserialize_data"] = $_POST["deserialize_data"];
+if(isset($_POST["deserialize_data"])) {
+	if($_POST["deserialize_data"] !== "" AND isset($_POST["s_submit"])) {
+		eval($_POST["deserialize_data"]);
+		$result = addslashes(serialize($pwn));
+		$_SESSION["deserialize_data"] = $_POST["deserialize_data"];
+	}
 }
 
 //アンシリアライズ(デシリアライズ)化
-if($_POST["serialize_data"] !== "" AND isset($_POST["de_submit"])) {
-	$result = var_export(unserialize(stripslashes($_POST["serialize_data"])), true); 
-	$_SESSION["serialize_data"] = $_POST["serialize_data"];
+if(isset($_POST["serialize_data"])) {
+	if($_POST["serialize_data"] !== "" AND isset($_POST["de_submit"])) {
+		$result = var_export(unserialize(stripslashes($_POST["serialize_data"])), true); 
+		$_SESSION["serialize_data"] = $_POST["serialize_data"];
+	}
 }
 
 //ファイルのアップロード
@@ -73,7 +77,7 @@ if(isset($_POST["file_submit"])) {
 	//$uploadfile = $uploaddir."vuln.class";
 	$uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 	if(!file_exists($uploaddir)) {
-		mkdir($uploaddir, 0777,true);
+		mkdir($uploaddir, 0755,true);
 	}
 	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
 		$result = "ファイルアップロード 成功.\n";
@@ -88,7 +92,8 @@ if(isset($_POST["file_submit"])) {
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<style>
 		* {
 		padding: 0;
@@ -138,10 +143,22 @@ if(isset($_POST["file_submit"])) {
 </head>
 <body>
 <header>
-	<nav class="navbar navbar-inverse bg-info">
+	<nav class="navbar navbar-expand-lg bg-info">
 		<div class="container-fluid">
-			<div class="navber-header">
-				<a class="navbar-brand text-light" href="/"><strong>PHP Serial killer</strong></a>
+			<a class="navbar-brand text-primary-emphasis" href="/"><strong>PHP Serial killer</strong></a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle text-primary-emphasis" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Practice
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/level1.php">Level 01</a></li>
+						<li><a class="dropdown-item" href="/level2.php">Level 02</a></li>
+						<li><a class="dropdown-item" href="/level3.php">Level 03</a></li>
+					</ul>
+				</li>
+				</ul>
 			</div>
 		</div>
 	</nav>
@@ -189,7 +206,7 @@ if(isset($_SESSION["deserialize_data"])) {
 	<div class="div-layout">
 		<h1>結果</h1>
 		<div class="result-btn-group">
-			<a href="#" id="popover-button" class="btn btn-info btn-layout" data-container="body" data-placement="right" data-trigger="focus">
+			<a href="#" id="popover-button" class="btn btn-info btn-layout text-primary-emphasis" data-container="body" data-placement="right" data-trigger="focus">
 			シリアライズデータの見方
 			</a>
 			<div id="popover-content" class="hidden popover">
@@ -222,12 +239,12 @@ if(isset($_SESSION["deserialize_data"])) {
 				</ul>
 			</div>
 			<div id="popover-title" class="hidden">見方</div>
-			<a href="#" onClick="replace()" class="btn btn-info btn-layout">バックスラッシュを取り除く</a>
-			<a href="#" onClick="urlencode()" class="btn btn-info btn-layout">URLエンコード</a>
-			<a href="#" onClick="urldecode()" class="btn btn-info btn-layout">URLデコード</a>
-			<a href="#" onClick="htmlEntitiesDecode()" class="btn btn-info btn-layout">HTMLエンティティデコード</a>
-			<a href="#" onClick="base64encode()" class="btn btn-info btn-layout">Base64エンコード</a>
-			<a href="#" onClick="base64decode()" class="btn btn-info btn-layout">Base64デコード</a>
+			<a href="#" onClick="replace()" class="btn btn-info btn-layout text-primary-emphasis">バックスラッシュを取り除く</a>
+			<a href="#" onClick="urlencode()" class="btn btn-info btn-layout text-primary-emphasis">URLエンコード</a>
+			<a href="#" onClick="urldecode()" class="btn btn-info btn-layout text-primary-emphasis">URLデコード</a>
+			<a href="#" onClick="htmlEntitiesDecode()" class="btn btn-info btn-layout text-primary-emphasis">HTMLエンティティデコード</a>
+			<a href="#" onClick="base64encode()" class="btn btn-info btn-layout text-primary-emphasis">Base64エンコード</a>
+			<a href="#" onClick="base64decode()" class="btn btn-info btn-layout text-primary-emphasis">Base64デコード</a>
 			<p>選択した文字列長:<span id="length-count"></span></p>
 			<p>選択した要素数:<span id="element-count"></span></p>
 		</div>

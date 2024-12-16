@@ -1,0 +1,13 @@
+services:
+  phpsk:
+    build:
+      context: app
+      args:
+        UID: ${UID}
+        GID: ${GID}
+        USERNAME: ${USERNAME}
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html/
+    user: "${UID}:${GID}"

@@ -20,7 +20,7 @@ class SQL {
         global $level3_secret;
         $this->conn = new SQLite3("/tmp/database.db");
         $this->conn->query("CREATE TABLE users(id integer, username text, password text)");
-        $this->conn->query("INSERT INTO users values(1, 'Onion', '${level3_secret}')");
+        $this->conn->query("INSERT INTO users values(1, 'Onion', '{$level3_secret}')");
         $this->execute();
     }
     public function connect() {
@@ -54,7 +54,7 @@ $sql->connect();
 $sql->query = 'SELECT username FROM users WHERE id=';
 
 
-if (isset ($_COOKIE['onion_cookie'])) {
+if (isset($_COOKIE['onion_cookie'])) {
     $sess_data = unserialize (base64_decode ($_COOKIE['onion_cookie']));
     try {
         if (is_array($sess_data) && $sess_data['ip'] != $_SERVER['REMOTE_ADDR']) {

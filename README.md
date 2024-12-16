@@ -6,12 +6,12 @@
 unserialize()を悪用したPHP Object Injectionを試行するためのいくつか便利機能も備えております。
 
 ## 使用手順
-### Docker runで実行します。
+### 開始
 
-> $ docker build . -t serial-killer
+> $ docker compose up -d
 
-> $ docker run -it -d --rm --name serial-killer -p 80:80 --privileged=true serial-killer
-
+### 終了
+> $ docker compose down
 
 ### ブラウザで以下のURLにアクセスしてください。
 
@@ -26,7 +26,3 @@ unserialize()を悪用したPHP Object Injectionを試行するためのいく�
 `http://localhost/level2.php`
 
 `http://localhost/level3.php`
-
-
-## 止めたい場合
-> $ docker stop serial-killer
