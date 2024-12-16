@@ -5,6 +5,10 @@
 
 unserialize()を悪用したPHP Object Injectionを試行するためのいくつか便利機能も備えております。
 
+
+## スクリーンショット
+![image](https://github.com/user-attachments/assets/837c5597-5b08-46f8-9ee9-e8779e466510)
+
 ## 使用手順
 ### 開始
 
